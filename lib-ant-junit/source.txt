@@ -1,0 +1,7 @@
+
+The following jars:
+	junit-xx.jar
+	hamcrest-core-xx.jar
+
+are required for ant junit target and are downloaded from
+	https://github.com/junit-team/junit/wiki/Download-and-Install

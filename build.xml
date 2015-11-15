@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE project>
+<project name="XJava" default="0_RunJUnitTests" basedir=".">
+
+	<description>XJava Builder.</description>
+
+	<property name="project.name" value="xjava" />
+	<property name="release.buildPropsFileName" value="src/xjava/res/build.properties" />
+	<property name="release.root" value="release" />
+	<property name="release.baseFolder" value="${release.root}/${project.name}" />
+	<property name="release.libFolder" value="${release.baseFolder}/lib" />
+	<property name="release.docFolder" value="${release.baseFolder}/doc" />
+	<property name="release.coreJarFile" value="${release.libFolder}/${project.name}.jar" />
+	<property name="release.servletJarFile" value="${release.libFolder}/${project.name}-servlet.jar" />
+	<property name="release.zipFile" value="${release.root}/${project.name}.zip" />
+
+	<!-- Targets -->
+
+	<target name="0_RunJUnitTests" description="Runs All JUnit Tests and halts if any of them fails">
+		<junit haltonfailure="true" showoutput="no" printsummary="no">
+			<classpath>
+				<pathelement location="bin" />
+				<pathelement location="bin-test" />
+				<pathelement location="lib-ant-junit/junit-4.11.jar" />
+				<pathelement location="lib-ant-junit/hamcrest-core-1.3.jar" />
+				<!-- Uncomment when external libs are added to the project -->
+				<!--fileset dir="lib">
+					<include name="**/*.jar" />
+				</fileset-->
+			</classpath>
+
+			<!-- If stack trace is required in case of failures (on screen): -->
+			<!--formatter type="plain" usefile="false" /-->
+
+			<batchtest>
+				<fileset dir="src-test" includes="**/*Test.java" excludes="x/java/BaseTest.java" />
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="PrepareNewRelease">
+		<!-- Deletes previous release and creates initial directory structure. -->
+		<delete file="${release.zipFile}" />
+		<delete dir="${release.baseFolder}" />
+		<mkdir dir="${release.baseFolder}" />
+		<mkdir dir="${release.libFolder}" />
+		<mkdir dir="${release.docFolder}" />
+	</target>
+
+	<target name="1_CreateRelease" description="Creates a release" depends="0_RunJUnitTests, PrepareNewRelease">
+		<!-- Increment build number -->
+		<buildnumber file="${release.buildPropsFileName}" />
+		<propertyfile file="${release.buildPropsFileName}">
+			<entry key="build.timestamp" type="date" value="now" pattern="yyyy-MM-dd'T'HH:mm:ss.SSSXXX" />
+		</propertyfile>
+		<copy file="${release.buildPropsFileName}" todir="bin/xjava/res" />
+
+		<!-- Create project core jar -->
+		<jar destfile="${release.coreJarFile}">
+			<fileset dir="bin" excludes="overview.html" />
+			<manifest>
+				<attribute name="Main-Class" value="xjava.tools.XJavaToolsInfoApp" />
+			</manifest>
+		</jar>
+
+		<!-- Create project servlet jar -->
+		<jar destfile="${release.servletJarFile}">
+			<fileset dir="bin-servlet" excludes="overview.html" />
+		</jar>
+
+		<!-- TODO build javadoc -->
+
+		<!-- Zip release -->
+		<zip destfile="${release.zipFile}" basedir="${release.root}/" includes="${project.name}/" />
+	</target>
+
+</project>

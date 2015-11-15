@@ -1,0 +1,144 @@
+<html>
+
+<head>
+<title>XJava Project Directory Info</title>
+<style>
+body, .yes, .no {
+	text-align: center
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+td, th {
+	border: 1px solid #888;
+	padding: 3px
+}
+
+th {
+	background: #cccccc
+}
+
+.rname {
+	font-family: monospace
+}
+
+.yes {
+	font-weight: bold;
+	color: green;
+}
+
+.no {
+	color: red;
+}
+</style>
+</head>
+
+<body>
+	<h2>XJava Project Directory Info</h2>
+
+	<table>
+		<tr>
+			<th colspan=2 class="rname">File/folder</th>
+			<th>Description</th>
+			<th style="font-size: 90%">Part&nbsp;of<br>Release
+			</th>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/src</td>
+			<td>Source code of the core XJava module.</td>
+			<td class="yes">&#10004;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/src-servlet</td>
+			<td>Source code of the Servlet API XJava module.</td>
+			<td class="yes">&#10004;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/src-test</td>
+			<td><code>JUnit</code> test sources of the project.</td>
+			<td class="no">&#10006;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/bin</td>
+			<td>Default output folder (for the <code>/src</code> source
+				folder).
+			</td>
+			<td class="yes">&#10004;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/bin-servlet</td>
+			<td>Output folder for the Servlet API module (<code>/src-servlet</code>
+				source folder).
+			</td>
+			<td class="yes">&#10004;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/bin-test</td>
+			<td>Output folder for the <code>/src-test</code> <code>JUnit</code>
+				tests.
+			</td>
+			<td class="no">&#10006;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/lib</td>
+			<td>Contains the external (API) libraries used by the XJava
+				implementation.</td>
+			<td class="no">&#10006;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/lib-ant-junit</td>
+			<td>Contains the external libraries required/used by the ant
+				build script to run the <code>JUnit</code> tests.
+			</td>
+			<td class="no">&#10006;</td>
+		</tr>
+		<tr>
+			<td rowspan=2 class="rname">/release</td>
+			<td class="rname">/</td>
+			<td>Root Release folder, release building process uses this as
+				the <i>work</i> folder.
+			</td>
+			<td class="no">&#10006;</td>
+		</tr>
+		<tr>
+			<td class="rname">/xjava</td>
+			<td>Base Release folder, contains an assembled release.</td>
+			<td class="no">&#10006;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/doc</td>
+			<td>Project related documentations.</td>
+			<td class="no">&#10006;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/eclipse-conf</td>
+			<td>Eclipse configuration files for the project. Required only
+				for developing the project in Eclipse.</td>
+			<td class="no">&#10006;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/build.xml</td>
+			<td>Ant Build script to run <code>JUnit</code> tests, create
+				releases.
+			</td>
+			<td class="no">&#10006;</td>
+		</tr>
+		<tr>
+			<td colspan=2 class="rname">/directory-info.html</td>
+			<td>This document.</td>
+			<td class="no">&#10006;</td>
+	</table>
+</body>
+
+<hr style="margin-top: 15px; color: #dddddd">
+
+<div style="text-align: right; font-style: italic;">
+	Copyright &copy; 2014 Andras Belicza <a href="mailto:iczaaa@gmail.com">&lt;iczaaa@gmail.com&gt;</a>
+</div>
+</html>
